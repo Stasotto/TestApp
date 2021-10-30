@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="mainactivity">MainActivity</string>
+    <string name="click_me">Click me</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_first_title">Фрагмент 1</string>
+    <string name="second_fragment">Фрагмент 2</string>
+    <string name="third_fragment">Фрагмент 3</string>
+</resources>
