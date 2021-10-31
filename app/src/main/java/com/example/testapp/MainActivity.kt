@@ -2,6 +2,10 @@ package com.example.testapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.testapp.fragments.FirstFragment
+import com.example.testapp.fragments.SecondFragment
+import com.example.testapp.fragments.ThirdFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -13,44 +17,32 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         btn.setOnClickListener {
-            when (FirstFragment.counterFragment) {
-                0 -> {
-                    openFragment()
-                    ++FirstFragment.counterFragment
-                }
-                1 -> {
-                    openFragment2()
-                    ++FirstFragment.counterFragment
-                }
-                2 -> {
-                    openFragment3()
-                    ++FirstFragment.counterFragment
-                }
+//            println(supportFragmentManager.findFragmentByTag(FirstFragment.TAG))
+//            println(FirstFragment.newInstance())
+            check()
             }
+        }
+
+    private fun check() {
+        if(supportFragmentManager.findFragmentByTag(FirstFragment.TAG) == null) {
+            openFragment(FirstFragment.newInstance(), FirstFragment.TAG)
+            return
+        }
+        if(supportFragmentManager.findFragmentByTag(SecondFragment.TAG2) == null) {
+            openFragment(SecondFragment.newInstance(), SecondFragment.TAG2)
+            return
+        }
+        if(supportFragmentManager.findFragmentByTag(ThirdFragment.TAG3) == null) {
+            openFragment(ThirdFragment.newInstance(), ThirdFragment.TAG3)
+            return
         }
     }
 
-    private fun openFragment() {
+    private fun openFragment(fragment: Fragment, tag: String) {
         supportFragmentManager
             .beginTransaction()
-            .addToBackStack(FirstFragment.TAG)
-            .add(R.id.container, FirstFragment.newInstance())
-            .commit()
-    }
-
-    private fun openFragment2() {
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(Fragment2.TAG2)
-            .add(R.id.container, Fragment2.newInstance())
-            .commit()
-    }
-
-    private fun openFragment3() {
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(Fragment3.TAG3)
-            .add(R.id.container, Fragment3.newInstance())
+            .addToBackStack(tag)
+            .replace(R.id.container, fragment, tag)
             .commit()
     }
 }

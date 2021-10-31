@@ -1,29 +1,25 @@
-package com.example.testapp
+package com.example.testapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.testapp.R
 
 
-class Fragment2 : Fragment() {
+class ThirdFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_2, container, false)
+        return inflater.inflate(R.layout.fragment_third, container, false)
     }
 
     companion object {
-        const val TAG2 = "com.example.testapp.Fragment2"
+        const val TAG3 = "com.example.testapp.fragments.Fragment3"
         @JvmStatic
-        fun newInstance() = Fragment2()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        FirstFragment.counterFragment--
+        fun newInstance() = ThirdFragment()
     }
 }
